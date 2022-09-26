@@ -1,6 +1,6 @@
 {
-  "short_name": "小嘿机租",
-  "name": "小嘿机租",
+  "short_name": "cra-antd-ts",
+  "name": "cra-antd-ts",
   "icons": [
     {
       "src": "favicon.ico",
