@@ -1,10 +1,19 @@
-# g-web
+# web pc 模版（cra-antd-ts）
 
-### 还需解决问题
+### 项目搭建
 
-- react-router-dom v6 + 菜单权限
-- 登录页面
-- 移植页面
+```bash
+npm i @craco/craco@^7.0.0-alpha.7
+
+npm i eslint-plugin-react-hooks --save-dev
+
+npm i typescript-plugin-css-modules --save-dev
+
+npm i cross-env
+
+```
+
+### react-router-dom v6
 
 ### 常用库
 
