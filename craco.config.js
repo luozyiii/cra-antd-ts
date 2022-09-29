@@ -1,5 +1,6 @@
 const path = require('path');
 const { whenProd } = require('@craco/craco');
+const CracoLessPlugin = require('craco-less');
 const resolve = (dir) => path.resolve(__dirname, dir);
 const proxyServer = require('./config/proxy');
 
@@ -55,6 +56,19 @@ module.exports = {
       };
     },
   },
+  plugins: [
+    {
+      plugin: CracoLessPlugin,
+      options: {
+        lessLoaderOptions: {
+          lessOptions: {
+            modifyVars: {},
+            javascriptEnabled: true,
+          },
+        },
+      },
+    },
+  ],
   devServer: {
     port: 8080,
     proxy: proxyServer,
