@@ -20,8 +20,15 @@
 }
 .pageContent {
   height: calc(100vh - 64px);
+  overflow: hidden;
+  .siderBox {
+    display: flex;
+    flex-direction: column;
+  }
   .subMenu {
+    flex: 1;
     height: 100%;
+    overflow-y: scroll;
   }
   .mainContent {
     padding: 12px;

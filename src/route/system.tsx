@@ -7,12 +7,16 @@ const UserPage = lazy(() => delayPromise(import(/* webpackChunkName: "system-use
 const UserOnlinePage = lazy(() =>
   delayPromise(import(/* webpackChunkName: "system-user-online" */ '@/page/system/user/online')),
 );
+const UserDetailPage = lazy(() =>
+  delayPromise(import(/* webpackChunkName: "system-user-detail" */ '@/page/system/user/detail')),
+);
 
 const config: RouteItemProps[] = [
   {
     path: 'system',
     title: '系统管理',
     icon: 'SettingOutlined',
+    redirect: '/system/user/online', // 重定向 点击可用
     children: [
       {
         path: 'menu',
@@ -36,6 +40,13 @@ const config: RouteItemProps[] = [
             title: '在线管理',
             icon: 'UserSwitchOutlined',
             element: lazyLoad(<UserOnlinePage />),
+          },
+          {
+            path: 'detail/:id',
+            title: '用户详情',
+            icon: 'UserSwitchOutlined',
+            element: lazyLoad(<UserDetailPage />),
+            isMenu: false,
           },
         ],
       },
