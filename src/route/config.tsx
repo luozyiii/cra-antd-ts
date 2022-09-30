@@ -11,10 +11,14 @@ const routeConfig = [
     children: [
       {
         index: true,
+        title: '首页',
+        icon: 'HomeOutlined',
         element: <Home />,
       },
       {
         path: 'home',
+        title: '首页',
+        icon: 'HomeOutlined',
         element: <Home />,
       },
       ...system,

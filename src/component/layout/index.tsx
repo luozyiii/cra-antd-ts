@@ -2,15 +2,12 @@ import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/
 import { Layout, Menu } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { config as RouteConfig } from '@/route';
+import { icons } from './config';
 
 import styles from './index.module.less';
 
 const { Header, Content, Sider } = Layout;
-
-const items1 = ['1', '2', '3'].map((key) => ({
-  key,
-  label: `nav ${key}`,
-}));
 
 const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, index) => {
   const key = String(index + 1);
@@ -29,11 +26,52 @@ const items2 = [UserOutlined, LaptopOutlined, NotificationOutlined].map((icon, i
 });
 
 const AppLayout = () => {
-  const [mainMenuList, setMainMenuList] = useState<any[]>([]);
+  const [mainItems, setMainItems] = useState<any[]>([]);
+  const [subItems, setSubItems] = useState<any[]>([]);
+
+  // 转换成 antd menu 结构
+  const getAntdMenu = (menuList: any, len: number = 99) => {
+    let count = 0;
+    function loop(arr: any) {
+      count++;
+      if (arr && arr.length > 0) {
+        const newArr = arr.map((item: any) => {
+          let { index, title, path, children, icon, ...other } = item;
+          if (index) {
+            return false;
+          }
+          const menuItem = {
+            ...other,
+            label: title,
+            key: path,
+            children: children && count < len ? loop(children) : undefined,
+          };
+          if (icon && typeof icon === 'string') {
+            menuItem.icon = React.createElement(icons[icon]);
+          } else if (icon === '' || icon === undefined) {
+            menuItem.icon = undefined;
+          } else {
+            menuItem.icon = icon;
+          }
+          return menuItem;
+        });
+        return newArr.filter(Boolean);
+      } else {
+        return [];
+      }
+    }
+    return loop(menuList);
+  };
+
   const getMenu = () => {
     return new Promise((resolve, reject) => {
+      // 顶部菜单
+      const menu = getAntdMenu(RouteConfig[0].children, 1);
+      // 侧边菜单
+      const subMenu = getAntdMenu(RouteConfig[0].children[2].children, 2);
       setTimeout(() => {
-        setMainMenuList(items1);
+        setMainItems(menu);
+        setSubItems(subMenu);
         resolve([]);
       }, 1000);
     });
@@ -54,7 +92,7 @@ const AppLayout = () => {
           theme="dark"
           mode="horizontal"
           defaultSelectedKeys={['2']}
-          items={mainMenuList}
+          items={mainItems}
         />
         <div className={styles.userInfo}>
           admin <span>退出</span>
@@ -68,7 +106,7 @@ const AppLayout = () => {
               mode="inline"
               defaultSelectedKeys={['1']}
               defaultOpenKeys={['sub1']}
-              items={items2}
+              items={subItems}
             />
           </Sider>
           <Content className={styles.mainContent}>

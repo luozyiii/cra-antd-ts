@@ -7,10 +7,12 @@ const Login = lazy(() => delayPromise(import(/* webpackChunkName: "login" */ '@/
 const routeConfig: any[] = [
   {
     path: 'login',
+    title: '登陆',
     element: lazyLoad(<Login />),
   },
   {
     path: '*',
+    title: '页面找不到',
     element: <NotFound />,
   },
 ];

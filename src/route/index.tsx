@@ -14,4 +14,5 @@ const RouteWrap = () => {
   );
 };
 
+export { config };
 export default RouteWrap;
