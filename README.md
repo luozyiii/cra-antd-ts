@@ -13,6 +13,18 @@ npm i cross-env
 
 ```
 
+### 两种启动项目的方式 cra 和 vite
+
+```bash
+npm run start
+npm run vite
+```
+
+#### vite
+
+[vite](https://cn.vitejs.dev/)
+[vite 支持 react](https://www.npmjs.com/package/@vitejs/plugin-react)
+
 ### react-router-dom v6
 
 ### 常用库
