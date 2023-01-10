@@ -31,4 +31,6 @@ npm run vite
 
 - [lodash-es](https://www.npmjs.com/package/lodash-es)
 
-- [日期处理: date-fns](https://www.npmjs.com/package/date-fns)
+- [date-fns：日期处理](https://www.npmjs.com/package/date-fns)
+
+- [zustand：状态管理](https://github.com/pmndrs/zustand)
